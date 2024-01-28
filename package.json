@@ -1,0 +1,25 @@
+{
+  "name": "VotingSite",
+  "version": "1.1.0",
+  "author": "Fullstack.io",
+  "scripts": {
+    "go": "open http://localhost:3000; npm run server",
+    "e2e": "nightwatch; npm run reset-data;",
+    "run-e2e": "concurrently -s first -k \"npm start\" \"sleep 15; npm run e2e\"",
+    "reset-data": "cp data.json.pristine data.json",
+    "test": "npm run reset-data; concurrently -k 'npm run server' 'npm run e2e'",
+    "server": "live-server public --host=localhost --port=3000 --middleware=./disable-browser-cache.js",
+    "start": "npm run server"
+  },
+  "babel": {
+    "presets": ["es2015"]
+  },
+  "private": true,
+  "dependencies": {
+    "body-parser": "1.14.1",
+    "express": "4.13.3"
+  },
+  "devDependencies": {
+    "concurrently": "^7.0.0"
+  }
+}
